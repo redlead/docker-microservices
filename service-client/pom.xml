@@ -12,6 +12,7 @@
     <artifactId>service-client</artifactId>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <docker.image.prefix>redlead</docker.image.prefix>
     </properties>
 
