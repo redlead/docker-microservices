@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
-    @RequestMapping("/product/{key}")
-    public ProductDTO getProduct(@PathVariable String key) {
-        return new ProductDTO(0L, key, "product name", "product description");
+    @RequestMapping("/product/{id}")
+    public ProductDTO getProduct(@PathVariable Long id) {
+        return new ProductDTO(id, "product name", "product description");
     }
 }
