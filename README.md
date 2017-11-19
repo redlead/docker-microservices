@@ -1,7 +1,7 @@
 = Microservices with docker demo
 
 
-Run as without docker
+Run without docker
 
 java -jar service-system-eureka/target/service-system-eureka-1.0-SNAPSHOT.jar
 java -jar -Dserver.port=8081 service-product/target/service-product-1.0-SNAPSHOT.jar
