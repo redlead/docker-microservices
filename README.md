@@ -19,8 +19,11 @@ curl http://localhost:8082/client/1/full
 
 Run with docker
 
-docker run -d -e "SPRING_PROFILES_ACTIVE=dev" -p 8761:8761 -t redlead/service-system-eureka
-docker run -d -e "SPRING_PROFILES_ACTIVE=dev" -e "EUREKA_URI=http://localhost:8761/eureka" -p 8081:8080 -t redlead/service-product
+
+docker network create demo
+docker run -d --net=demo --name service-system-eureka -e "SPRING_PROFILES_ACTIVE=dev" -p 8761:8761 -t redlead/service-system-eureka
+docker run -d --net=demo --name service-product -e "SPRING_PROFILES_ACTIVE=dev" -e "EUREKA_URI=http://service-system-eureka:8761/eureka" -p 8081:8080 -t redlead/service-product
+docker run -d --net=demo --name service-client -e "SPRING_PROFILES_ACTIVE=dev" -e "EUREKA_URI=http://service-system-eureka:8761/eureka" -p 8082:8080 -t redlead/service-client
 
 
 docker stop $(docker ps -a -q)
