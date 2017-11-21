@@ -54,7 +54,10 @@ curl http://localhost:8082/client/1/full
 Discovery service UI can be accesed at `http://localhost:8761`.
 
 ## How to build
-You have to have Docker installed. Run `mvn clean package install`.
+You have to have Docker installed.
+````
+mvn clean package install
+````
 
 ## Run without docker
 ````
