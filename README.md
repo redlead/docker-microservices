@@ -65,11 +65,16 @@ java -jar -Dserver.port=8082 service-client/target/service-client-1.0-SNAPSHOT.j
 
 ## Run with docker
 ````
-docker network rm demo
-docker network create demo
-docker run -d --net=demo --name service-system-eureka -e "SPRING_PROFILES_ACTIVE=dev" -p 8761:8761 -t redlead/service-system-eureka
-docker run -d --net=demo --name service-product -e "SPRING_PROFILES_ACTIVE=dev" -e "EUREKA_URI=http://service-system-eureka:8761/eureka" -p 8081:8080 -t redlead/service-product
-docker run -d --net=demo --name service-client -e "SPRING_PROFILES_ACTIVE=dev" -e "EUREKA_URI=http://service-system-eureka:8761/eureka" -p 8082:8080 -t redlead/service-client
+docker network rm spring-cloud-network
+docker network create spring-cloud-network
+docker run -d --net=spring-cloud-network --name service-system-eureka -e "SPRING_PROFILES_ACTIVE=dev" -p 8761:8761 -t redlead/service-system-eureka
+docker run -d --net=spring-cloud-network --name service-product -e "SPRING_PROFILES_ACTIVE=dev" -e "EUREKA_URI=http://service-system-eureka:8761/eureka" -p 8081:8080 -t redlead/service-product
+docker run -d --net=spring-cloud-network --name service-client -e "SPRING_PROFILES_ACTIVE=dev" -e "EUREKA_URI=http://service-system-eureka:8761/eureka" -p 8082:8080 -t redlead/service-client
+````
+
+## Run with docker-compose
+````
+docker-compose start
 ````
 
 ## Useful commands
