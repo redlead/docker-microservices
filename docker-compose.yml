@@ -3,6 +3,9 @@ services:
   service-system-eureka:
     container_name: service-system-eureka
     image: redlead/service-system-eureka:latest
+    build:
+      context: ./service-system-eureka
+      dockerfile: Dockerfile
     ports:
       - 8761:8761
     networks:
@@ -12,6 +15,9 @@ services:
   service-system-api-gateway:
     container_name: service-system-api-gateway
     image: redlead/service-system-api-gateway:latest
+    build:
+      context: ./service-system-api-gateway
+      dockerfile: Dockerfile
     ports:
       - 8080:8080
     networks:
@@ -21,7 +27,10 @@ services:
       - EUREKA_URI=http://service-system-eureka:8761/eureka
   service-product:
     container_name: service-product
-    image: redlead/service-product
+    image: redlead/service-product:latest
+    build:
+      context: ./service-product
+      dockerfile: Dockerfile
     networks:
       - spring-cloud-network
     environment:
@@ -31,7 +40,10 @@ services:
       - service-system-eureka
   service-client:
     container_name: service-client
-    image: redlead/service-client
+    image: redlead/service-client:latest
+    build:
+      context: ./service-client
+      dockerfile: Dockerfile
     networks:
       - spring-cloud-network
     environment:
