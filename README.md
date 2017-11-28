@@ -57,7 +57,8 @@ Discovery service UI can be accesed at `http://localhost:8761`.
 ## How to build
 You have to have Docker installed.
 ````
-mvn clean package install
+mvn clean package
+docker-compose build
 ````
 
 ## Run without docker
@@ -80,7 +81,7 @@ docker run -d --net=spring-cloud-network --name service-client -e "SPRING_PROFIL
 
 ## Run with docker-compose
 ````
-docker-compose start
+docker-compose up -d
 ````
 
 ## Useful commands
@@ -88,4 +89,5 @@ docker-compose start
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 docker rmi $(docker images -q -f dangling=true)
+docker-compose down
 ````
